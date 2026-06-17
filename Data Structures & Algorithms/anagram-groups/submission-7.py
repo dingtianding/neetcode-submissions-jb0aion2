@@ -1,0 +1,13 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        counter = defaultdict(list)
+        
+        for s in strs:
+            sCount = [0] * 26
+            for c in s:
+                delta = ord(c) - ord('a')
+                sCount[delta] += 1
+            counter[tuple(sCount)].append(s)#need to be tuple(immutable) in order to be key
+
+        return list(counter.values())
+        
